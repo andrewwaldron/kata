@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RequiredArgsConstructor
-@RestController("/feedback")
+@RestController
 public class FeedbackController {
-    @PostMapping
+    @PostMapping("/feedback")
     public void postFeedback(@RequestBody String feedback) {
         // Obviously this is a test, real posted data should be sanitized before putting it into the logs
         System.out.println("Received feedback: " + feedback);
