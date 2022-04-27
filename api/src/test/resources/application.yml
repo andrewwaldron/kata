@@ -1,0 +1,19 @@
+server:
+  port: 8432
+spring:
+  codec:
+    max-in-memory-size: 20MB
+  jpa:
+    properties:
+      hibernate:
+        default_schema: kata
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_user
+    username: db_user
+    password: db_password
+  flyway:
+    schemas: kata
+    default-schema: kata
+logging:
+  level:
+    root: INFO
