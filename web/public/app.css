@@ -1,0 +1,93 @@
+/* clearfix */
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-family: 'Quicksand', sans-serif; background-color: #fff; color: #333; }
+code { font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace; }
+
+/* header banner (green bar on all pages) */
+.banner { min-height: 9rem; text-align: left; background-color: #79cab1; color: #FFF; font-size: 3rem; font-weight: 600; margin-bottom: 0; }
+.banner p { padding-top: 2rem; padding-right: 15%; }
+.banner div { position: relative; }
+.banner img { max-width: 100px; position: absolute; right: 0; top: 1rem; }
+@media only screen and ( max-width: 576px ) { .header img {  max-width: 100px; } }
+div.footer { color: #FFF; background: #737373; min-height: 4rem; }
+
+/* Branded user controls */
+.btn-primary:focus, .btn-primary:active { background-color: #79cab1; border-color: #79cab1; box-shadow: 0 0 0 0.25rem rgb(121 202 177 / 25%); }
+.btn-primary:hover { background-color: #aacdc2; color: #fff; border-color: #aacdc2; }
+.btn-primary { color: #fff; background-color: #79cab1; border-color: #79cab1; }
+.dropdown-item.active, .dropdown-item:active { background-color: #79cab1; }
+a.normal, a.normal:link, a.normal:visited, a.normal:hover, a.normal:active { color: #79cab1; text-decoration: none; cursor: pointer }
+.form-control:focus { border-color: #79cab1; box-shadow: 0 0 0 0.25rem rgb(121 202 177 / 25%); }
+.error span { color: #c73504; margin-top: 0.4rem; display: inline-block; }
+.error .form-control:focus { border-color: #c73504; box-shadow: 0 0 0 0.25rem rgb(199 53 4 / 25%); }
+
+/* Position the footer at the bottom of the page (always, even if the content is short) */
+.App { min-height: 100vh; position: relative; }
+main { padding-bottom: 6rem; }
+footer { min-height: 2rem; position: absolute; bottom: 0; left: 0; right: 0; }
+
+/* general use */
+.pad-top { padding-top: 1rem; }
+.pad-bottom { padding-bottom: 1rem; }
+ul.bulletList { list-style-position: outside; }
+ul.bulletList li { display: list-item; list-style: circle; margin-left: 1.5rem; padding-bottom: 0.5rem; }
+ul.customIconList > li { display: block; padding:  5px; }
+
+.user-input-area { border: 1px solid #CCC; padding: 1.1rem; border-radius: 3px; height: 100%}
+
+/* 
+ * A stats field on the tax screen or other screen.
+ * Currently uses an accordion for information about the field
+ */
+div.statistic { flex-direction: row; display: flex; padding-bottom: 1rem; }
+div.statistic .content { display: flex; flex-direction: column; flex: 1 0; width: 100% }
+div.statistic .field-value { font-family: 'Roboto Mono', monospace; }
+div.statistic .field-value.red { color: #FC0CEC; }
+div.statistic .field-info { line-height: 2.5rem; min-width: 20px; text-align: center; }
+div.statistic table { width: 100%; }
+div.statistic th { font-weight: 400; }
+div.statistic.no-padding-bottom { padding-bottom: 0; }
+
+div.header-statistic { padding-bottom: 1rem; }
+div.header-statistic .title a, div.header-statistic .title a:hover, div.header-statistic .title a:visited, div.header-statistic .title a:focus { cursor: pointer; font-weight: 600; text-decoration: underline dashed; color: #79cab1; }
+div.header-statistic .title i { font-size: 0.8rem; position: relative; }
+div.header-statistic .value { font-family: 'Roboto Mono', monospace; }
+a.popup, a.popup:hover, a.popup:visited, a.popup:focus { cursor: pointer; font-weight: 600; text-decoration: underline dashed; color: #79cab1; }
+
+/* buy now/demo overlay */
+.purchase-header { color: #79cab1; font-weight: 800; }
+.purchase-box { position: fixed; bottom: 1rem; right: 0; background: #FFF; color: #000; display: block; width: 95%; border: 3px solid #CCC; border-radius: 3px; padding: 1rem; z-index: 1000; left: 0; margin: auto; padding-right: var(--bs-gutter-x,.75rem); padding-left: var(--bs-gutter-x,.75rem); }
+@media (min-width: 576px) { .purchase-box { max-width: 540px; } }
+@media (min-width: 768px) { .purchase-box { max-width: 720px; } }
+@media (min-width: 992px) { .purchase-box { max-width: 960px; } }
+@media (min-width: 1200px) { .purchase-box { max-width: 1140px; } }
+@media (min-width: 1400px) { .purchase-box { max-width: 1320px; } }
+
+/* help overlay */
+.help-box { position: fixed; bottom: 1rem; right: 0; background: #3b88ff; color: #FFFFFF; display: block; border: 3px solid #CCC; padding: 1rem; z-index: 1000; margin: auto; border-radius: 40px; padding-right: 40px; right: -40px; cursor: pointer; }
+.help-box:hover { border-color: #787878; }
+.help-overlay { display: flex; align-items: center; flex-direction: column; }
+
+.negative-amount-color { color: #FC0CEC; }
+
+/* Data table formatting */
+table.standard thead tr { background: #CECECE; font-weight: 600; font-size: 1.3rem; color: #FFF; }
+table.standard tr:nth-child(even) { background: #CECECE; }
+
+table.compact thead tr { background: #CECECE; font-weight: 600; font-size: 1rem; color: #FFF; }
+table.compact tr:nth-child(even) { background: #CECECE; }
+table.compact td, table.compact th { border: 0.1rem solid #AAAAAA; border-radius: 2px; padding: 0.3rem; vertical-align: middle; }
+table.compact { font-size: 0.75rem; margin-bottom: 2rem; }
+table.compact pre { margin: 0; }
+
+div.emphasis-screen { display: flex; flex-direction: row; align-items: center; }
+div.emphasis-screen.full { min-height: 70vh; }
+div.emphasis-screen.dark { background: #545454; color: #FEFEFE; }
+div.emphasis-screen .content { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; font-size: 1.8rem; font-weight: 600; line-height: 4rem; }
+div.emphasis-screen .header { font-size:  2.5rem; text-decoration: underline dotted; text-underline-offset:  0.4rem; }
+div.emphasis-screen .content em { color: #79cab1; font-style: normal; font-weight: 800; }
+
+
+
+
+
