@@ -4,11 +4,26 @@ import Head from 'next/head'
 import { Form, Button } from 'react-bootstrap';
 
 const Home: NextPage = () => {
-  const [contact, setContact] = useState('Contact');
-  const [feedback, setFeedback] = useState('Feedback Default');
-  const handleSubmit = (evt : Event) => {
+  const [contact, setContact] = useState('');
+  const [feedback, setFeedback] = useState('');
+  
+  const handleSubmit = (evt : React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log("Submit here");
+    callApi().then(() => { console.log("Submitted responses"); });
+  };
+
+  const getFeedbackData = () => { return contact + " " + feedback; }
+
+  const callApi = () => {
+    var baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+    return fetch(baseUrl + "/feedback", {
+      method: 'POST', mode: 'cors', cache: 'no-cache',
+      credentials: 'same-origin', headers: {
+          'Content-Type': 'text/plain'
+        },
+      redirect: 'error', referrerPolicy: 'origin',
+      body: getFeedbackData()
+    });
   };
 
   return (
