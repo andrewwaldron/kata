@@ -1,5 +1,7 @@
 package com.kata.controller;
 
+import com.kata.entity.FeedbackEntity;
+import com.kata.repository.FeedbackRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,9 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 public class FeedbackController {
+    private final FeedbackRepository feedbackRepository;
+
     @PostMapping("/feedback")
     public void postFeedback(@RequestBody String feedback) {
-        // Obviously this is a test, real posted data should be sanitized before putting it into the logs
-        System.out.println("Received feedback: " + feedback);
+        var feedbackEntity = new FeedbackEntity();
+        feedbackEntity.setFeedback(feedback);
+        feedbackRepository.save(feedbackEntity);
     }
 }
