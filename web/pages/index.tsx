@@ -4,26 +4,39 @@ import Head from 'next/head'
 import { Form, Button } from 'react-bootstrap';
 
 const Home: NextPage = () => {
-  const [contact, setContact] = useState('');
-  const [feedback, setFeedback] = useState('');
+  const [question, setQuestion] = useState('');
+  const [possibleAnswers, setPossibleAnswers] = useState([]);
   
   const handleSubmit = (evt : React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+
     callApi().then(() => { console.log("Submitted responses"); });
   };
 
-  const getFeedbackData = () => { return contact + " " + feedback; }
+  const getQuestionBody = () => {
+    return JSON.stringify({
+        question: question
+    });
+  }
 
   const callApi = () => {
     var baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-    return fetch(baseUrl + "/feedback", {
+    return fetch(baseUrl + "/question", {
       method: 'POST', mode: 'cors', cache: 'no-cache',
       credentials: 'same-origin', headers: {
-          'Content-Type': 'text/plain'
+          'Content-Type': 'application/json'
         },
       redirect: 'error', referrerPolicy: 'origin',
-      body: getFeedbackData()
+      body: getQuestionBody()
     });
+  };
+
+  const setAnswerDisplayText = (answer, newDisplayText) => {
+    answer.displayText = newDisplayText;
+  };
+
+  const addPossibility = () => {
+    setPossibleAnswers([ ...possibleAnswers, { displayText: "Because Wings" } ]);
   };
 
   return (
@@ -40,19 +53,32 @@ const Home: NextPage = () => {
 
       <div className="container pad-top">
         <div className="row">
-          { /* Tossed a simple feedback form here for quick coolness & to test out submission & connectivity */ }
-
           <div className="col-md">
             <Form className="form-inline" onSubmit={handleSubmit}>
+
+
               <Form.Group className="mb-3" controlId="contactUs.contact">
-                <Form.Label>Contact (optional)</Form.Label>
-                <Form.Control type="text" placeholder="Contact" value={contact} onChange={e => setContact(e.target.value) } />
+                <Form.Label>Whats Your Question</Form.Label>
+                <Form.Control type="text" placeholder="Contact" value={question} onChange={e => setQuestion(e.target.value) } />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="contactUs.feedback">
-                <Form.Label>Feedback</Form.Label>
-                <Form.Control as="textarea"  value={feedback} onChange={e => setFeedback(e.target.value) } rows={3} />
-              </Form.Group>
-              <Button variant="primary" type="submit">Send Feedback</Button>
+
+              {
+                possibleAnswers.map(function (answer) {
+                  return (
+                      <Form.Group className="mb-3" controlId="contactUs.contact">
+                        <Form.Label>Answer:</Form.Label>
+                        <Form.Control type="text" placeholder="Answer" value={answer.displayText} onChange={e => setAnswerDisplayText(answer, e.target.value) } />
+                      </Form.Group>
+                  );
+                })
+              }
+
+              <Button variant="secondary"
+                      type="submit"
+                      className="mr-2"
+                      onClick={ addPossibility }
+              >More Possibles, Please</Button>
+              <Button variant="primary" type="submit">Create Question</Button>
             </Form>
           </div>
         </div>
